@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<div class="container">
+    <h2>Novo Cliente</h2>
+    <form action="/clientes" method="POST">
+        <div class="mb-3">
+            <label>Nome</label>
+            <input type="text" name="nome" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>CPF</label>
+            <input type="text" name="cpf" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Endereço</label>
+            <input type="text" name="endereco" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Idade</label>
+            <input type="number" name="idade" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a href="/clientes" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<%- include('partials/footer') %>

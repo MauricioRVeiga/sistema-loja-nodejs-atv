@@ -1,0 +1,125 @@
+<%- include('partials/header') %>
+
+<h2 class="mb-4 text-center">Painel Administrativo</h2>
+
+<div class="row g-4 text-white">
+    <div class="col-md-3">
+      <div class="card bg-primary text-white text-center shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Vendas Hoje</h6>
+          <p class="fs-4">18</p>
+          <i class="bi bi-bag-fill fs-3"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-success text-center text-white shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Faturamento</h6>
+          <p class="fs-4">R$ 1.200,00</p>
+          <i class="bi bi-cash-coin fs-3"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-warning text-center shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Estoque</h6>
+          <p class="fs-4">215</p>
+          <i class="bi bi-box-seam fs-3"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-dark text-white text-center shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Clientes</h6>
+          <p class="fs-4">512</p>
+          <i class="bi bi-people-fill fs-3"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<div class="row mb-4 mt-4">
+  <div class="col-md-3">
+    <div class="card bg-primary text-white text-center shadow-sm">
+      <div class="card-body">
+        <h6>Total de Usuários</h6>
+        <h3><%= typeof totalUsuarios !== 'undefined' ? totalUsuarios : 0 %></h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card bg-success text-white text-center shadow-sm">
+      <div class="card-body">
+        <h6>Ativos</h6>
+        <h3><%= typeof ativos !== 'undefined' ? ativos : 0 %></h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card bg-warning text-dark text-center shadow-sm">
+      <div class="card-body">
+        <h6>Novos (7d)</h6>
+        <h3><%= typeof novos7d !== 'undefined' ? novos7d : 0 %></h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card bg-dark text-white text-center shadow-sm">
+      <div class="card-body">
+        <h6>Admins</h6>
+        <h3><%= typeof admins !== 'undefined' ? admins : 0 %></h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row">
+  <div class="col-md-6">
+    <h5 class="text-center">Vendas da Semana</h5>
+    <canvas id="vendasSemanaChart"></canvas>
+  </div>
+  <div class="col-md-6">
+    <h5 class="text-center">Categorias Mais Vendidas</h5>
+    <canvas id="categoriasChart"></canvas>
+  </div>
+</div>
+
+<script>
+  const ctx1 = document.getElementById('vendasSemanaChart').getContext('2d');
+  new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+      datasets: [{
+        label: 'Vendas',
+        data: [5, 12, 8, 14, 10, 18, 9],
+        backgroundColor: 'rgba(13, 110, 253, 0.7)',
+        borderRadius: 6
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+
+  const ctx2 = document.getElementById('categoriasChart').getContext('2d');
+  new Chart(ctx2, {
+    type: 'pie',
+    data: {
+      labels: ['Linhas', 'Pipas', 'Carreteis', 'Rabiolas'],
+      datasets: [{
+        data: [35, 25, 20, 20],
+        backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545']
+      }]
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>

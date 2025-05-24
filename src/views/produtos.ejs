@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<h2 class="mb-4">Lista de Produtos</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% produtos.forEach(produto => { %>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="<%= produto.imagem %>" class="card-img-top" alt="<%= produto.nome %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= produto.nome %></h5>
+          <br>
+          <h6 class="card-title">Categoria:<%= produto.categoria %></h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Estoque: <%= produto.estoque %></li>
+            <li class="list-group-item">Vendas Hoje: <%= produto.vendasHoje %></li>
+            <li class="list-group-item">Custo: <%= produto.custoCompra %></li>
+          </ul>
+        </div>
+        <div class="card-footer text-end">
+          <small class="text-muted">Preço de venda: R$ <%= produto.precoVenda.toFixed(2) %></small>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('partials/footer') %>
