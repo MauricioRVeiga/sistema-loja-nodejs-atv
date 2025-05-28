@@ -24,7 +24,10 @@ const Usuario = connection.define("usuarios", {
   telefone: {
     type: Sequelize.STRING,
     allowNull: false,
+<<<<<<< HEAD
     unique: true,
+=======
+>>>>>>> a1e246ac5504867d535c9fb9228de85f34af145c
   },
   cpf: {
     type: Sequelize.STRING,

@@ -36,8 +36,13 @@ export const mostrarFormNovoUsuario = (req, res) => {
 
 // Criar novo usuário
 export const criarUsuario = (req, res) => {
+<<<<<<< HEAD
   const { nome, email, cadastro, acesso, cpf, endereco, telefone } = req.body;
   Usuario.create({ nome, email, cadastro, acesso, cpf, endereco, telefone })
+=======
+  const { nome, email, cadastro, acesso, cpf, endereco } = req.body;
+  Usuario.create({ nome, email, cadastro, acesso, cpf, endereco })
+>>>>>>> a1e246ac5504867d535c9fb9228de85f34af145c
     .then(() => res.redirect("/usuarios"))
     .catch((error) =>
       res.status(500).send("Erro ao criar usuário: " + error.message)

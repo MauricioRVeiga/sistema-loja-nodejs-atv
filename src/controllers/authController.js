@@ -1,7 +1,10 @@
 import Usuario from "../models/Usuario.js";
 import bcrypt from "bcrypt";
+<<<<<<< HEAD
 import { sendSMS } from "../services/smsService.js";
 import { Op } from "sequelize";
+=======
+>>>>>>> a1e246ac5504867d535c9fb9228de85f34af145c
 
 export const mostrarLogin = (req, res) => {
   res.render("login", { error: null });
@@ -45,6 +48,7 @@ export const cadastrarUsuario = async (req, res) => {
 };
 
 export const login = async (req, res) => {
+<<<<<<< HEAD
   const { telefone, senha } = req.body;
   console.log("Telefone recebido:", telefone);
   console.log("Senha recebida:", senha);
@@ -114,6 +118,23 @@ export const validarToken = async (req, res) => {
     return res.render("login_token", {
       error: "Token incorreto. Tente novamente.",
     });
+=======
+  const { email, senha } = req.body;
+  try {
+    const usuario = await Usuario.findOne({ where: { email } });
+    if (!usuario) {
+      return res.render("login", { error: "Usuário ou senha inválidos." });
+    }
+    const senhaOk = await bcrypt.compare(senha, usuario.senha);
+    if (!senhaOk) {
+      return res.render("login", { error: "Usuário ou senha inválidos." });
+    }
+    req.session.usuarioId = usuario.id;
+    req.session.usuarioNome = usuario.nome;
+    return res.redirect("/dashboard"); // Redireciona para o dashboard após login
+  } catch (err) {
+    res.render("login", { error: "Erro ao fazer login." });
+>>>>>>> a1e246ac5504867d535c9fb9228de85f34af145c
   }
 };
 
