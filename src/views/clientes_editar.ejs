@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<div class="container">
+    <h2>Editar Cliente</h2>
+    <form action="/clientes/<%= cliente.id %>/editar" method="POST">
+        <div class="mb-3">
+            <label>Nome</label>
+            <input type="text" name="nome" class="form-control" value="<%= cliente.nome %>" required>
+        </div>
+        <div class="mb-3">
+            <label>CPF</label>
+            <input type="text" name="cpf" class="form-control" value="<%= cliente.cpf %>" required>
+        </div>
+        <div class="mb-3">
+            <label>Endereço</label>
+            <input type="text" name="endereco" class="form-control" value="<%= cliente.endereco %>" required>
+        </div>
+        <div class="mb-3">
+            <label>Idade</label>
+            <input type="number" name="idade" class="form-control" value="<%= cliente.idade %>" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+        <a href="/clientes" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<%- include('partials/footer') %>

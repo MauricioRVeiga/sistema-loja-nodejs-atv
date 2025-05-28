@@ -1,0 +1,37 @@
+<%- include('partials/header') %>
+
+<h2 class="mb-4">Pedidos</h2>
+
+<table class="table table-hover table-bordered align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>Número do Pedido</th>
+      <th>Cliente</th>
+      <th>Valor Total</th>
+      <th>Status</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pedidos.forEach(pedido => { %>
+      <tr>
+        <td><%= pedido.numero %></td>
+        <td><%= pedido.cliente %></td>
+        <td><%= pedido.total %></td>
+        <td>
+          <% if (pedido.status === 'Entregue') { %>
+            <span class="badge bg-success"><%= pedido.status %></span>
+          <% } else if (pedido.status === 'Em preparo') { %>
+            <span class="badge bg-warning text-dark"><%= pedido.status %></span>
+          <% } else { %>
+            <span class="badge bg-danger"><%= pedido.status %></span>
+          <% } %>
+        </td>
+        <td><%= new Date(pedido.data).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
+            %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('partials/footer') %>
