@@ -1,29 +1,23 @@
 import Usuario from "../models/Usuario.js";
+import Cliente from "../models/Cliente.js";
 import Sequelize from "sequelize";
 const Op = Sequelize.Op;
 
 export const dashboard = async (req, res) => {
   try {
-    // Usuários
-    const totalUsuarios = await Usuario.count();
-    const ativos = await Usuario.count({ where: { acesso: "Admin" } }); // Exemplo: ajuste conforme sua lógica de "ativo"
-    const novos7d = await Usuario.count({
+    // Busca todos os clientes sem filtro por 'cadastro'
+    const clientes = await Cliente.findAll();
+    const totalClientes = await Cliente.count();
+    const seteDiasAtras = new Date();
+    seteDiasAtras.setDate(seteDiasAtras.getDate() - 7);
+    const novos7d = await Cliente.count({
       where: {
-        cadastro: {
-          [Op.gte]: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-        },
+        createdAt: { [Op.gte]: seteDiasAtras },
       },
     });
-    const admins = await Usuario.count({ where: { acesso: "Admin" } });
-
-    res.render("dashboard", {
-      totalUsuarios,
-      ativos,
-      novos7d,
-      admins,
-    });
+    res.render("dashboard", { clientes, totalClientes, novos7d });
   } catch (error) {
-    res.status(500).send("Erro ao carregar dashboard: " + error.message);
+    res.status(500).send("Erro ao buscar clientes");
   }
 };
 

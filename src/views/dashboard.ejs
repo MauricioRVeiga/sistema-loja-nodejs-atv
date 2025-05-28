@@ -45,8 +45,8 @@
   <div class="col-md-3">
     <div class="card bg-primary text-white text-center shadow-sm">
       <div class="card-body">
-        <h6>Total de Usuários</h6>
-        <h3><%= typeof totalUsuarios !== 'undefined' ? totalUsuarios : 0 %></h3>
+        <h6>Total de Clientes</h6>
+        <h3><%= typeof totalClientes !== 'undefined' ? totalClientes : 0 %></h3>
       </div>
     </div>
   </div>
@@ -63,14 +63,6 @@
       <div class="card-body">
         <h6>Novos (7d)</h6>
         <h3><%= typeof novos7d !== 'undefined' ? novos7d : 0 %></h3>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card bg-dark text-white text-center shadow-sm">
-      <div class="card-body">
-        <h6>Admins</h6>
-        <h3><%= typeof admins !== 'undefined' ? admins : 0 %></h3>
       </div>
     </div>
   </div>
@@ -121,5 +113,27 @@
     }
   });
 </script>
+
+<h1>Clientes</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% clientes.forEach(cliente => { %>
+      <tr>
+        <td><%= cliente.id %></td>
+        <td><%= cliente.nome %></td>
+        <td><%= cliente.email %></td>
+        <td><%= cliente.telefone %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
 
 <%- include('partials/footer') %>

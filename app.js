@@ -6,10 +6,7 @@ import adminRoutes from "./src/routes/admin.js";
 import authRoutes from "./src/routes/auth.js";
 import connection from "./src/config/sequelize-config.js";
 import { dashboard } from "./src/controllers/produtoController.js";
-<<<<<<< HEAD
 import { tokenForm, validarToken } from "./src/controllers/authController.js";
-=======
->>>>>>> a1e246ac5504867d535c9fb9228de85f34af145c
 
 // Importe os models aqui para garantir que as tabelas sejam criadas
 import "./src/models/Usuario.js";
@@ -41,17 +38,10 @@ app.use(
 // Middleware para proteger rotas (exceto login/cadastro)
 app.use((req, res, next) => {
   // Permite acesso se estiver logado
-<<<<<<< HEAD
   if (req.session.usuarioLogado) {
     return next();
   }
   // Permite acesso às rotas de login/cadastro/logout/token/public
-=======
-  if (req.session.usuarioId) {
-    return next();
-  }
-  // Permite acesso às rotas de login/cadastro/logout
->>>>>>> a1e246ac5504867d535c9fb9228de85f34af145c
   if (
     req.path.startsWith("/login") ||
     req.path.startsWith("/cadastro") ||
@@ -77,11 +67,8 @@ app.use(authRoutes);
 
 // Adicione esta linha ANTES do adminRoutes para garantir prioridade
 app.get("/dashboard", dashboard);
-<<<<<<< HEAD
 app.get("/login/token", tokenForm);
 app.post("/login/token", validarToken);
-=======
->>>>>>> a1e246ac5504867d535c9fb9228de85f34af145c
 
 app.use("/", adminRoutes);
 
